@@ -11,7 +11,7 @@ Summary:        MinGW Windows Pixman library
 
 License:        MIT
 URL:            http://xorg.freedesktop.org/
-Group:          Development/OtheL
+Group:          Development/Other
 
 Source0:        http://xorg.freedesktop.org/archive/individual/lib/pixman-%{version}.tar.gz
 Source1:        make-pixman-snapshot.sh
