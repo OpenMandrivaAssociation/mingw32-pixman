@@ -6,7 +6,7 @@
 
 Name:           mingw32-pixman
 Version:        0.13.2
-Release:        %mkrel 3
+Release:        4
 Summary:        MinGW Windows Pixman library
 
 License:        MIT
@@ -18,7 +18,6 @@ Source1:        make-pixman-snapshot.sh
 
 Patch0:         pixman-0.13.2-license.patch
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:      noarch
 
 BuildRequires:  mingw32-filesystem >= 23
@@ -41,24 +40,32 @@ MinGW Windows Pixman library.
 # Uses GTK for its testsuite, so disable this otherwise
 # we have a chicken & egg problem on mingw
 %{_mingw32_configure} --disable-gtk --disable-static
-make %{?_smp_mflags}
-
+%make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
-make DESTDIR=$RPM_BUILD_ROOT install
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+%makeinstall_std
 
 
 %files
-%defattr(-,root,root)
 %doc LICENSE
 %{_mingw32_bindir}/libpixman-1-0.dll
 %{_mingw32_includedir}/pixman-1
 %{_mingw32_libdir}/libpixman-1.dll.a
-%{_mingw32_libdir}/libpixman-1.la
 %{_mingw32_libdir}/pkgconfig/pixman-1.pc
+
+
+%changelog
+* Fri Dec 10 2010 Oden Eriksson <oeriksson@mandriva.com> 0.13.2-3mdv2011.0
++ Revision: 620355
+- the mass rebuild of 2010.0 packages
+
+* Mon Sep 14 2009 Thierry Vignaud <tv@mandriva.org> 0.13.2-2mdv2010.0
++ Revision: 439930
+- rebuild
+
+* Wed Feb 18 2009 Jérôme Soyer <saispo@mandriva.org> 0.13.2-1mdv2009.1
++ Revision: 342301
+- Fix typo
+- import mingw32-pixman
+
+
